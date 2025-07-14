@@ -456,6 +456,8 @@
       "set_as_default": "デフォルトのアシスタントに適用",
       "show_line_numbers": "コードに行番号を表示",
       "temperature": {
+        "enable_temperature": "Temperature を有効にする",
+        "enable_temperature.tip": "有効にすると、Temperature パラメータがモデルへのリクエストに含まれます",
         "label": "温度",
         "tip": "低い値はモデルをより創造的で予測不可能にし、高い値はより決定論的で正確にします"
       },
@@ -464,6 +466,8 @@
         "tip": "思考が終了したら思考内容を自動的に折りたたみます"
       },
       "top_p": {
+        "enable_top_p": "Top-P を有効にする",
+        "enable_top_p.tip": "有効にすると、Top-P パラメータがモデルへのリクエストに含まれます",
         "label": "Top-P",
         "tip": "デフォルト値は1で、値が小さいほど回答の多様性が減り、理解しやすくなります。値が大きいほど、AIの語彙範囲が広がり、多様性が増します"
       }
