@@ -303,6 +303,8 @@
       "settings.thought_auto_collapse.tip": "思考结束后思考内容自动折叠",
       "settings.top_p": "Top-P",
       "settings.top_p.tip": "默认值为 1，值越小，AI 生成的内容越单调，也越容易理解；值越大，AI 回复的词汇围越大，越多样化",
+      "settings.enable_top_p": "启用 Top-P",
+      "settings.enable_top_p.tip": "启用后，Top-P 参数将会包含在发送给模型的请求中",
       "suggestions.title": "建议的问题",
       "thinking": "思考中（用时 {{seconds}} 秒）",
       "topics.auto_rename": "生成话题名",

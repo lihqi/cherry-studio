@@ -185,7 +185,7 @@ export abstract class OpenAIBaseClient<
     ) {
       return undefined
     }
-    return assistant.settings?.topP
+    return assistant.settings?.enableTopP ? assistant.settings?.topP : undefined
   }
 
   /**

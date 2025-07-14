@@ -57,6 +57,7 @@ export type AssistantSettings = {
   contextCount: number
   temperature: number
   topP: number
+  enableTopP: boolean
   maxTokens: number | undefined
   enableMaxTokens: boolean
   streamOutput: boolean

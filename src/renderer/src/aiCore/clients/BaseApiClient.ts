@@ -177,7 +177,10 @@ export abstract class BaseApiClient<
   }
 
   public getTopP(assistant: Assistant, model: Model): number | undefined {
-    return isNotSupportTemperatureAndTopP(model) ? undefined : assistant.settings?.topP
+    if (isNotSupportTemperatureAndTopP(model)) {
+      return undefined
+    }
+    return assistant.settings?.enableTopP ? assistant.settings?.topP : undefined
   }
 
   protected getServiceTier(model: Model) {
