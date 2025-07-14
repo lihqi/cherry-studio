@@ -28,6 +28,7 @@ export function getDefaultAssistant(): Assistant {
       maxTokens: 0,
       streamOutput: true,
       topP: 1,
+      enableTopP: true,
       toolUseMode: 'prompt',
       customParameters: []
     }
@@ -117,6 +118,7 @@ export const getAssistantSettings = (assistant: Assistant): AssistantSettings =>
     contextCount: contextCount === MAX_CONTEXT_COUNT ? UNLIMITED_CONTEXT_COUNT : contextCount,
     temperature: assistant?.settings?.temperature ?? DEFAULT_TEMPERATURE,
     topP: assistant?.settings?.topP ?? 1,
+    enableTopP: assistant?.settings?.enableTopP ?? true,
     enableMaxTokens: assistant?.settings?.enableMaxTokens ?? false,
     maxTokens: getAssistantMaxTokens(),
     streamOutput: assistant?.settings?.streamOutput ?? true,
@@ -151,6 +153,7 @@ export async function createAssistantFromAgent(agent: Agent) {
       maxTokens: 0,
       streamOutput: true,
       topP: 1,
+      enableTopP: true,
       toolUseMode: 'prompt',
       customParameters: []
     }
