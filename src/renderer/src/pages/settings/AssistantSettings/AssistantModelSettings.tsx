@@ -286,39 +286,35 @@ const AssistantModelSettings: FC<Props> = ({ assistant, updateAssistant, updateA
         />
       </SettingRow>
       {enableTopP && (
-        <>
-          <Row align="middle" justify="end">
-            <Col>
-              <EditableNumber
-                min={0}
-                max={1}
-                step={0.01}
-                value={topP}
-                changeOnBlur
-                onChange={(value) => {
-                  if (!isNull(value)) {
-                    setTopP(value)
-                    setTimeout(() => updateAssistantSettings({ topP: value }), 500)
-                  }
-                }}
-                style={{ width: '80px' }}
-              />
-            </Col>
-          </Row>
-          <Row align="middle" gutter={24}>
-            <Col span={24}>
-              <Slider
-                min={0}
-                max={1}
-                onChange={setTopP}
-                onChangeComplete={onTopPChange}
-                value={typeof topP === 'number' ? topP : 1}
-                marks={{ 0: '0', 1: '1' }}
-                step={0.01}
-              />
-            </Col>
-          </Row>
-        </>
+        <Row align="middle" gutter={12}>
+          <Col span={20}>
+            <Slider
+              min={0}
+              max={1}
+              onChange={setTopP}
+              onChangeComplete={onTopPChange}
+              value={typeof topP === 'number' ? topP : 1}
+              marks={{ 0: '0', 1: '1' }}
+              step={0.01}
+            />
+          </Col>
+          <Col span={4}>
+            <EditableNumber
+              min={0}
+              max={1}
+              step={0.01}
+              value={topP}
+              changeOnBlur
+              onChange={(value) => {
+                if (!isNull(value)) {
+                  setTopP(value)
+                  setTimeout(() => updateAssistantSettings({ topP: value }), 500)
+                }
+              }}
+              style={{ width: '100%' }}
+            />
+          </Col>
+        </Row>
       )}
       <Divider style={{ margin: '10px 0' }} />
 
