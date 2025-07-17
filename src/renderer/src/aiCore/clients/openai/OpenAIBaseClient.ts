@@ -182,14 +182,10 @@ export abstract class OpenAIBaseClient<
   }
 
   override getTopP(assistant: Assistant, model: Model): number | undefined {
-    if (
-      isNotSupportTemperatureAndTopP(model) ||
-      (assistant.settings?.reasoning_effort && isClaudeReasoningModel(model))
-    ) {
+    if (assistant.settings?.reasoning_effort && isClaudeReasoningModel(model)) {
       return undefined
     }
-    const assistantSettings = getAssistantSettings(assistant)
-    return assistantSettings.enableTopP ? assistantSettings.topP : undefined
+    return super.getTopP(assistant, model)
   }
 
   /**
