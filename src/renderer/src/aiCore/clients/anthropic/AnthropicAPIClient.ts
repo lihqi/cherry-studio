@@ -145,7 +145,7 @@ export class AnthropicAPIClient extends BaseApiClient<
     if (assistant.settings?.reasoning_effort && isClaudeReasoningModel(model)) {
       return undefined
     }
-    return assistant.settings?.enableTopP ? assistant.settings?.topP : undefined
+    return super.getTopP(assistant, model)
   }
 
   /**

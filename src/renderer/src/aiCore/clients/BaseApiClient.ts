@@ -45,6 +45,7 @@ import { isEmpty } from 'lodash'
 
 import { CompletionsContext } from '../middleware/types'
 import { ApiClient, RequestTransformer, ResponseChunkTransformer } from './types'
+import { getAssistantSettings } from '@renderer/services/AssistantService'
 
 const logger = loggerService.withContext('BaseApiClient')
 
@@ -192,7 +193,8 @@ export abstract class BaseApiClient<
     if (isNotSupportTemperatureAndTopP(model)) {
       return undefined
     }
-    return assistant.settings?.enableTopP ? assistant.settings?.topP : undefined
+    const assistantSettings = getAssistantSettings(assistant)
+    return assistantSettings?.enableTopP ? assistantSettings?.topP : undefined
   }
 
   protected getServiceTier(model: Model) {
