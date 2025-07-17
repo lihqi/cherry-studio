@@ -138,7 +138,7 @@ export class AnthropicAPIClient extends BaseApiClient<
     if (assistant.settings?.reasoning_effort && isClaudeReasoningModel(model)) {
       return undefined
     }
-    return assistant.settings?.temperature
+    return super.getTemperature(assistant, model)
   }
 
   override getTopP(assistant: Assistant, model: Model): number | undefined {

@@ -33,6 +33,7 @@ const AssistantModelSettings: FC<Props> = ({ assistant, updateAssistant, updateA
   const [customParameters, setCustomParameters] = useState<AssistantSettingCustomParameters[]>(
     assistant?.settings?.customParameters ?? []
   )
+  const [enableTemperature, setEnableTemperature] = useState(assistant?.settings?.enableTemperature ?? true)
 
   const customParametersRef = useRef(customParameters)
 
@@ -152,6 +153,7 @@ const AssistantModelSettings: FC<Props> = ({ assistant, updateAssistant, updateA
 
   const onReset = () => {
     setTemperature(DEFAULT_TEMPERATURE)
+    setEnableTemperature(true)
     setContextCount(DEFAULT_CONTEXTCOUNT)
     setEnableMaxTokens(false)
     setMaxTokens(0)
@@ -162,6 +164,7 @@ const AssistantModelSettings: FC<Props> = ({ assistant, updateAssistant, updateA
     setToolUseMode('prompt')
     updateAssistantSettings({
       temperature: DEFAULT_TEMPERATURE,
+      enableTemperature: true,
       contextCount: DEFAULT_CONTEXTCOUNT,
       enableMaxTokens: false,
       maxTokens: 0,
@@ -229,45 +232,55 @@ const AssistantModelSettings: FC<Props> = ({ assistant, updateAssistant, updateA
         </HStack>
       </HStack>
       <Divider style={{ margin: '10px 0' }} />
-      <Row align="middle">
-        <Col span={20}>
+
+      <SettingRow style={{ minHeight: 30 }}>
+        <HStack alignItems="center">
           <Label>
             {t('chat.settings.temperature.label')}
             <Tooltip title={t('chat.settings.temperature.tip')}>
               <QuestionIcon />
             </Tooltip>
           </Label>
-        </Col>
-        <Col span={4}>
-          <EditableNumber
-            min={0}
-            max={2}
-            step={0.01}
-            precision={2}
-            value={temperature}
-            onChange={(value) => {
-              if (value !== null) {
-                setTemperature(value)
-                setTimeout(() => updateAssistantSettings({ temperature: value }), 500)
-              }
-            }}
-            style={{ width: '100%' }}
-          />
-        </Col>
-      </Row>
-      <Row align="middle" gutter={24}>
-        <Col span={24}>
-          <Slider
-            min={0}
-            max={2}
-            onChange={setTemperature}
-            onChangeComplete={onTemperatureChange}
-            value={typeof temperature === 'number' ? temperature : 0}
-            marks={{ 0: '0', 0.7: '0.7', 2: '2' }}
-            step={0.01}
-          />
-        </Col>
-      </Row>
+        </HStack>
+        <Switch
+          checked={enableTemperature}
+          onChange={(enabled) => {
+            setEnableTemperature(enabled)
+            updateAssistantSettings({ enableTemperature: enabled })
+          }}
+        />
+      </SettingRow>
+      {enableTemperature && (
+        <Row align="middle" gutter={12}>
+          <Col span={20}>
+            <Slider
+              min={0}
+              max={2}
+              onChange={setTemperature}
+              onChangeComplete={onTemperatureChange}
+              value={typeof temperature === 'number' ? temperature : 0}
+              marks={{ 0: '0', 0.7: '0.7', 2: '2' }}
+              step={0.01}
+            />
+          </Col>
+          <Col span={4}>
+            <EditableNumber
+              min={0}
+              max={2}
+              step={0.01}
+              value={temperature}
+              changeOnBlur
+              onChange={(value) => {
+                if (!isNull(value)) {
+                  setTemperature(value)
+                  setTimeout(() => updateAssistantSettings({ temperature: value }), 500)
+                }
+              }}
+              style={{ width: '100%' }}
+            />
+          </Col>
+        </Row>
+      )}
       <Divider style={{ margin: '10px 0' }} />
 
       <SettingRow style={{ minHeight: 30 }}>
