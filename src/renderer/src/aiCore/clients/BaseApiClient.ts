@@ -186,7 +186,11 @@ export abstract class BaseApiClient<
   }
 
   public getTemperature(assistant: Assistant, model: Model): number | undefined {
-    return isNotSupportTemperatureAndTopP(model) ? undefined : assistant.settings?.temperature
+    if (isNotSupportTemperatureAndTopP(model)) {
+      return undefined
+    }
+    const assistantSettings = getAssistantSettings(assistant)
+    return assistantSettings?.enableTemperature ? assistantSettings?.temperature : undefined
   }
 
   public getTopP(assistant: Assistant, model: Model): number | undefined {
