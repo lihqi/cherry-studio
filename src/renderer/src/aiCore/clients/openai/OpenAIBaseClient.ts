@@ -1,7 +1,6 @@
 import { loggerService } from '@logger'
 import {
   isClaudeReasoningModel,
-  isNotSupportTemperatureAndTopP,
   isOpenAIReasoningModel,
   isSupportedModel,
   isSupportedReasoningEffortOpenAIModel
