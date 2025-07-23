@@ -8,6 +8,7 @@ import {
 import { REFERENCE_PROMPT } from '@renderer/config/prompts'
 import { getLMStudioKeepAliveTime } from '@renderer/hooks/useLMStudio'
 import { getStoreSetting } from '@renderer/hooks/useSettings'
+import { getAssistantSettings } from '@renderer/services/AssistantService'
 import { SettingsState } from '@renderer/store/settings'
 import {
   Assistant,
@@ -45,7 +46,6 @@ import { isEmpty } from 'lodash'
 
 import { CompletionsContext } from '../middleware/types'
 import { ApiClient, RequestTransformer, ResponseChunkTransformer } from './types'
-import { getAssistantSettings } from '@renderer/services/AssistantService'
 
 const logger = loggerService.withContext('BaseApiClient')
 
