@@ -13,7 +13,7 @@ import { Dispatch, FC, SetStateAction, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { SettingContainer, SettingSubtitle } from '..'
+import { SettingContainer, SettingRow, SettingSubtitle } from '..'
 
 const AssistantSettings: FC = () => {
   const { defaultAssistant, updateDefaultAssistant } = useDefaultAssistant()
@@ -104,9 +104,11 @@ const AssistantSettings: FC = () => {
   }
 
   return (
-    <SettingContainer style={{ height: 'auto', background: 'transparent', padding: 0 }} theme={theme}>
+    <SettingContainer
+      style={{ height: 'auto', background: 'transparent', padding: `0 0 12px 0`, gap: 12 }}
+      theme={theme}>
       <SettingSubtitle style={{ marginTop: 0 }}>{t('common.name')}</SettingSubtitle>
-      <HStack gap={8} alignItems="center" style={{ margin: '10px 0' }}>
+      <HStack gap={8} alignItems="center">
         <Popover content={<EmojiPicker onEmojiClick={handleEmojiSelect} />} arrow>
           <EmojiButtonWrapper>
             <Button style={{ fontSize: 20, padding: '4px', minWidth: '30px', height: '30px' }}>{emoji}</Button>
@@ -137,27 +139,27 @@ const AssistantSettings: FC = () => {
           style={{ flex: 1 }}
         />
       </HStack>
-      <SettingSubtitle>{t('common.prompt')}</SettingSubtitle>
+      <SettingSubtitle style={{ marginTop: 0 }}>{t('common.prompt')}</SettingSubtitle>
       <TextArea
         rows={4}
         placeholder={t('common.assistant') + t('common.prompt')}
         value={defaultAssistant.prompt}
         onChange={(e) => updateDefaultAssistant({ ...defaultAssistant, prompt: e.target.value })}
-        style={{ margin: '10px 0' }}
         spellCheck={false}
       />
       <SettingSubtitle
         style={{
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
+          marginTop: 0
         }}>
         {t('settings.assistant.model_params')}
         <Button onClick={onReset} style={{ width: 81 }}>
           {t('chat.settings.reset')}
         </Button>
       </SettingSubtitle>
-      <Row align="middle">
+      <SettingRow>
         <HStack alignItems="center">
           <Label>{t('chat.settings.temperature.label')}</Label>
           <Tooltip title={t('chat.settings.temperature.tip')}>
@@ -172,10 +174,10 @@ const AssistantSettings: FC = () => {
             onUpdateAssistantSettings({ enableTemperature: enabled })
           }}
         />
-      </Row>
+      </SettingRow>
       {enableTemperature && (
-        <Row align="middle" style={{ marginBottom: 10 }} gutter={20}>
-          <Col span={19}>
+        <Row align="middle" gutter={12}>
+          <Col span={20}>
             <Slider
               min={0}
               max={2}
@@ -186,7 +188,7 @@ const AssistantSettings: FC = () => {
               step={0.01}
             />
           </Col>
-          <Col span={5}>
+          <Col span={4}>
             <InputNumber
               min={0}
               max={2}
@@ -198,7 +200,7 @@ const AssistantSettings: FC = () => {
           </Col>
         </Row>
       )}
-      <Row align="middle">
+      <SettingRow>
         <HStack alignItems="center">
           <Label>{t('chat.settings.top_p.label')}</Label>
           <Tooltip title={t('chat.settings.top_p.tip')}>
@@ -213,10 +215,10 @@ const AssistantSettings: FC = () => {
             onUpdateAssistantSettings({ enableTopP: enabled })
           }}
         />
-      </Row>
+      </SettingRow>
       {enableTopP && (
-        <Row align="middle" style={{ marginBottom: 10 }} gutter={20}>
-          <Col span={19}>
+        <Row align="middle" gutter={12}>
+          <Col span={20}>
             <Slider
               min={0}
               max={1}
@@ -227,7 +229,7 @@ const AssistantSettings: FC = () => {
               step={0.01}
             />
           </Col>
-          <Col span={5}>
+          <Col span={4}>
             <InputNumber min={0} max={1} step={0.01} value={topP} onChange={onTopPChange} style={{ width: '100%' }} />
           </Col>
         </Row>
@@ -238,7 +240,7 @@ const AssistantSettings: FC = () => {
           <QuestionIcon />
         </Tooltip>
       </Row>
-      <Row align="middle" style={{ marginBottom: 10 }} gutter={20}>
+      <Row align="middle" gutter={20}>
         <Col span={19}>
           <Slider
             min={0}
@@ -261,7 +263,7 @@ const AssistantSettings: FC = () => {
           />
         </Col>
       </Row>
-      <Flex justify="space-between" align="center" style={{ marginBottom: 10 }}>
+      <Flex justify="space-between" align="center">
         <HStack alignItems="center">
           <Label>{t('chat.settings.max_tokens.label')}</Label>
           <Tooltip title={t('chat.settings.max_tokens.tip')}>
