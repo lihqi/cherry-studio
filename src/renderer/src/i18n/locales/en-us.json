@@ -456,8 +456,6 @@
       "set_as_default": "Apply to default assistant",
       "show_line_numbers": "Show line numbers in code",
       "temperature": {
-        "enable_temperature": "Enable Temperature",
-        "enable_temperature.tip": "When enabled, the Temperature parameter will be included in requests to the model",
         "label": "Temperature",
         "tip": "Higher values make the model more creative and unpredictable, while lower values make it more deterministic and precise."
       },
@@ -466,8 +464,6 @@
         "tip": "Automatically collapse thought content after thinking ends"
       },
       "top_p": {
-        "enable_top_p": "Enable Top-P",
-        "enable_top_p.tip": "When enabled, the Top-P parameter will be included in requests to the model",
         "label": "Top-P",
         "tip": "Default value is 1, the smaller the value, the less variety in the answers, the easier to understand, the larger the value, the larger the range of the AI's vocabulary, the more diverse"
       }

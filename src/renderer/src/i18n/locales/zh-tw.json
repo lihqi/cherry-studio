@@ -456,8 +456,6 @@
       "set_as_default": "設為預設助手",
       "show_line_numbers": "程式碼顯示行號",
       "temperature": {
-        "enable_temperature": "啟用 Temperature",
-        "enable_temperature.tip": "啟用後，Temperature 參數將會包含在發送給模型的請求中",
         "label": "溫度",
         "tip": "模型產生文字的隨機程度。數值越高，回應內容越具多樣性、創意性及隨機性；設定為 0 則會依據事實回答。一般聊天建議設定為 0.7"
       },
@@ -466,8 +464,6 @@
         "tip": "思考結束後思考內容自動折疊"
       },
       "top_p": {
-        "enable_top_p": "啟用 Top-P",
-        "enable_top_p.tip": "啟用後，Top-P 參數將會包含在發送給模型的請求中",
         "label": "Top-P",
         "tip": "模型生成文字的隨機程度。值越小，AI 生成的內容越單調，也越容易理解；值越大，AI 回覆的詞彙範圍越大，越多樣化"
       }
